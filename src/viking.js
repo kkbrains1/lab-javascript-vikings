@@ -72,7 +72,8 @@ class War {
     //const selectRandomViking = (vikings) => vikings[randomInt(vikings)];
     const saxonDamage = selectRandomSoldier(this.saxonArmy).receiveDamage(selectRandomSoldier(this.vikingArmy).strength);
     if (saxonDamage.includes('died')) {
-      this.saxonArmy = [];
+      this.saxonArmy = this.saxonArmy.filter((saxon) => this.health < 0);
+      //this.saxonArmy = [];
       //.splice(0, this.saxonArmy.length)
     }
     return saxonDamage;    
@@ -83,7 +84,7 @@ class War {
     const selectRandomSoldier = (soldiers) => soldiers[randomInt(soldiers)];
     const vikingDamage = selectRandomSoldier(this.vikingArmy).receiveDamage(selectRandomSoldier(this.saxonArmy).strength);
     if (vikingDamage.includes('died')) {
-      this.vikingArmy = [];      
+      this.vikingArmy = this.vikingArmy.filter((viking) => this.health < 0);
     }
     return vikingDamage; 
   }
